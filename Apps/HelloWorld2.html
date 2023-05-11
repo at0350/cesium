@@ -28,10 +28,16 @@
   <body>
     <div id="cesiumContainer"></div>
     <script>
-      var viewer = new Cesium.Viewer("cesiumContainer", {
-        terrainProvider: Cesium.createWorldTerrain(),
-        baseLayerPicker: true,
-      });      
+      var viewer = new Cesium.Viewer('cesiumContainer', {
+        imageryProvider: new Cesium.JapanGSIImageryProvider({
+          layerLists: ["ort","relief","std"]
+        }),
+        terrainProvider: new Cesium.JapanGSITerrainProvider({}),
+        baseLayerPicker: false,
+        mapProjection: new Cesium.WebMercatorProjection(Cesium.Ellipsoid.WGS84)
+      });
+      var scene = viewer.scene;
+      scene.globe.depthTestAgainstTerrain = true;
       viewer.dataSources.add(Cesium.KmlDataSource.load('./Layer/230110_マップ貼付用-1.9m打設中.kmz'));
     </script>
   </body>
