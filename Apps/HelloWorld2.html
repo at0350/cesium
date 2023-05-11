@@ -28,8 +28,11 @@
   <body>
     <div id="cesiumContainer"></div>
     <script>
-      const viewer = new Cesium.Viewer("cesiumContainer");
-      viewer.dataSources.add(Cesium.KmlDataSource.load("./Layer/230110_マップ貼付用-1.9m打設中.kmz"));
+      var viewer = new Cesium.Viewer("cesiumContainer", {
+        terrainProvider: Cesium.createWorldTerrain(),
+        baseLayerPicker: true,
+      });      
+      viewer.dataSources.add(Cesium.KmlDataSource.load('./Layer/230110_マップ貼付用-1.9m打設中.kmz'));
     </script>
   </body>
 </html>
